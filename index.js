@@ -10,6 +10,7 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", "./view");
 
+app.use(express.static('./assets'));
 app.use(express.urlencoded({ extended: false }))
 
 // url handler
