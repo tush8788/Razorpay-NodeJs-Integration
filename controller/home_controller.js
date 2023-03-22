@@ -1,5 +1,6 @@
 const razorpayFun = require('../config/razorpay');
-const crypto = require('crypto')
+const crypto = require('crypto');
+const dotenv=require('dotenv').config();
 
 //home page
 module.exports.home = function (req, res) {
@@ -29,7 +30,7 @@ module.exports.verifyPayment = function (req, res) {
 
     let { razorpay_payment_id, razorpay_order_id, razorpay_signature } = req.body;
 
-    let secret = "KShnGk20oG4nDOJLXE5H01GB"
+    let secret = process.env.razorpay_secret;
 
     // Creating hmac object 
     let hmac = crypto.createHmac('sha256', secret);

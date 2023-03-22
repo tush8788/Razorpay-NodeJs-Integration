@@ -1,15 +1,18 @@
 const Razorpay=require('razorpay');
+const dotenv=require('dotenv').config();
 
 //create new instance 
 const razorpayInstance =new Razorpay({
-    key_id:"rzp_test_EPhQo4BerlN0xY",
-    key_secret:"KShnGk20oG4nDOJLXE5H01GB"
+    key_id:process.env.razorpay_id,
+    key_secret:process.env.razorpay_secret
 });
 
+//crate order id for payment  
 module.exports.makePayment= async function(amount){
     try{
+        //razerpay take amount in paisa
         amount*=100;
-        console.log(amount);
+
         let order = await razorpayInstance.orders.create({amount});
         return order;
     }
@@ -18,5 +21,3 @@ module.exports.makePayment= async function(amount){
         return;
     }
 }
-
-// module.exports=makePayment;
